@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tableau JS API - VueJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <div ref="tableau"></div>
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    msg: 'Hello Tableau Fans!',
+                    url: "http://public.tableau.com/views/RegionalSampleWorkbook/Storms",
+                    options: {
+                        hideTabs: true
+                    }
+                }
+            },
+            methods: {
+                initViz: function () {
+                    let viz = new tableau.Viz(this.$refs.tableau, this.url, this.options);
+                }
+            },
+            mounted: function () {
+                this.initViz()
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
